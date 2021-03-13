@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    <form action="/api/urls" method="POST">
+        <div>
+            <label for="url">URL</label>
+            <input id="url" name="url" required/>
+        </div>
+        <div>
+            <label for="url">Slug</label>
+            <input id="slug" name="slug"/>
+        </div>
+        <input type="submit" value="Short it!"/>
+    </form>
+</body>
+</html>
