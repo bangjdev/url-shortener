@@ -1,0 +1,29 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "A free URL shortener website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bangjdev/url-shortener.git"
+  },
+  "author": "bangjdev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bangjdev/url-shortener/issues"
+  },
+  "homepage": "https://github.com/bangjdev/url-shortener#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  }
+}
