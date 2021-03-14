@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
-const nanoid = require('nanoid');
+const { customAlphabet } = require('nanoid');
+
+try {
+    require('dotenv').config();
+} catch (err) {
+    console.error(err);
+}
+const nanoidCustom = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', parseInt(process.env.DEFAULT_SLUG_LENGTH));
 
 const genRandomSlug = () => {
-    const len = process.env.DEFAULT_SLUG_LENGTH;
-    return nanoid.nanoid(len);
+    return nanoidCustom();
 }
 
 const isValidURL = (url) => {

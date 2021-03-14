@@ -9,8 +9,12 @@ urlsRouter.get("/", (req, res) => {
 urlsRouter.get("/:slug", (req, res, next) => {
     const { slug } = req.params;
     urlFactory.findUrl(slug).then(url => {
-        console.log("Redirect to", url.url);
-        res.redirect(url.url);
+        if (url) {
+            console.log("Redirect to", url.url);
+            res.redirect(url.url);
+        } else {
+            next();
+        }
     }).catch(next);
 });
 

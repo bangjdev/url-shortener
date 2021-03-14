@@ -37,7 +37,11 @@ app.get("/", (req, res, next) => {
 
 app.get("/:slug", (req, res, next) => {
     const { slug } = req.params;
-    res.redirect("/api/urls/" + slug);
+    if (slug == 'api' || slug == 'undefined') {
+        next();
+    } else {
+        res.redirect("/api/urls/" + slug);
+    }
 });
 
 app.get("*", (req, res, next) => {
