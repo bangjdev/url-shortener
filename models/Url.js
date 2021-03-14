@@ -16,7 +16,8 @@ const isValidURL = (url) => {
 }
 
 const isValidSlug = (slug) => {
-    return (slug.length > 0) && (slug.length < 255) && (/[a-zA-Z0-9_]/.test(slug));
+    const slugRegex = /^[a-zA-Z0-9_]+$/;
+    return (slug.length > 0) && (slug.length < 255) && (slug.match(slugRegex) != null);
 }
 
 const UrlSchema = mongoose.Schema({
@@ -29,8 +30,8 @@ const UrlSchema = mongoose.Schema({
         type: String,
         required: false,
         default: genRandomSlug,
-        unique: [true, 'The slug ({VALUE}) has been taken'],
-        validate: [isValidSlug, "Slug invalid format, must be less than 255 characters and only contains letters, numbers"]
+        validate: [isValidSlug, "Slug invalid format, must be less than 255 characters and only contains letters, numbers"],
+        unique: [true, 'The slug ({VALUE}) has been taken']
     },
     date: {
         type: Date,

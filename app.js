@@ -17,7 +17,10 @@ const app = express();
 app.set('view engine', 'ejs'); 
 
 // MIDDLEWARES
-app.use(helmet());
+app.use(helmet({
+        contentSecurityPolicy: false,
+    })
+);
 app.use(morgan('tiny'));
 app.use(express.urlencoded({
     extended: true 
