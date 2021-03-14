@@ -1,24 +1,32 @@
 const express = require('express');
 const urlsRouter = express.Router();
-const Url = require("../models/Url");
+const urlFactory = require("../factories/UrlFactory");
 
 urlsRouter.get("/", (req, res) => {
     res.send("What are you looking for?");
 });
 
+urlsRouter.get("/:slug", (req, res, next) => {
+    const { slug } = req.params;
+    urlFactory.findUrl(slug).then(url => {
+        console.log("Redirect to", url.url);
+        res.redirect(url.url);
+    }).catch(next);
+});
+
 urlsRouter.post("/", (req, res, next) => {
-    console.log(req.body);
-    if (req.body.slug === '') {
-        req.body.slug = undefined;
+    let {url, slug} = req.body;
+    if (slug === '') {
+        slug = undefined;
+    } else {
+        slug = slug.trim();
     }
-    const url = new Url({
-        url: req.body.url,
-        slug: req.body.slug
-    });
-    console.log(url);
-    url.save()
-        .then((data) => res.json(data))
-        .catch((err) => next(err));
+
+    url = url.trim();
+
+    urlFactory.saveUrl(url, slug).then((savedUrl) => {
+        res.render("success", {data: savedUrl});
+    }).catch(next);
 });
 
 module.exports = urlsRouter;
