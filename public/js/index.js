@@ -5,11 +5,10 @@ function getRandomInt(max) {
 }
 
 const changeBackground = (listBackgroundImages) => {
-    console.log("ok");
     const id = getRandomInt(listBackgroundImages.length);
     const imageUrl = "/public/assets/" + listBackgroundImages[id];
     document.getElementsByTagName("body")[0].style.background = `url("${imageUrl}") center center no-repeat`;
     document.getElementsByTagName("body")[0].style.backgroundSize = `cover`;
 }
 
-setInterval(changeBackground(listBackgroundImages), 1000);
+setInterval(() => changeBackground(listBackgroundImages), 5000);
