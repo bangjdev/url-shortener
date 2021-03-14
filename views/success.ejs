@@ -1,24 +1,23 @@
 <html>
     <head>
-        <link rel="stylesheet" href="/public/index.css" type="text/css" />
+        <link rel="stylesheet" href="/public/css/success.css" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" type="text/css"/>
     </head>
     <body>
         <% if (data) { %>
             <div class = "container">
-                <h1>Success</h1>
-                <p>Your short link has been created successfully 😁</p>
-                <p>Click this link or send it to your friend 🔗</p>
-                <div class = "linkbox">
-                    <span><%= data.slug %></span>
-                    <a href="/<%= data.slug %>" target="blank">
-                        <i class="fas fa-external-link-square-alt"></i>
-                    </a>
-                    <button><i class="fas fa-copy"></i></button>
+                <div class="box">
+                    <h1>Success</h1>
+                    <h3>Your short 🔗 has been created successfully 😁</h3>
+                    <span id="slug" style="display:none"><%= data.slug %></span>
+                    <div class = "linkbox">
+                        <input id="short-link" value="<%= data.slug %>" readonly/>
+                        <button onclick="goToLink()"><i class="fas fa-link"></i></button>
+                        <button onclick="copyToClipboard()"><i class="fas fa-copy"></i></button>
+                    </div>
                 </div>
-                <p><%= JSON.stringify(data) %></p>
-                
             </div>
         <% } %>
     </body>
+    <script src="/public/js/success.js"></script>
 </html>
